@@ -1,0 +1,6 @@
+CREATE TABLE `shoppingitem` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NULL DEFAULT NULL,
+  `amount` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
