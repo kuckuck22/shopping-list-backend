@@ -1,20 +1,21 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ShoppingService} from "../../shared/shopping/shopping.service";
-import {MatTable} from "@angular/material";
+import {MatDialog, MatTable} from "@angular/material";
+import {AddItemDialogComponent} from "../add-item-dialog/add-item-dialog.component";
+
 
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css']
 })
-
 export class ShoppingListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'amount', 'delete'];
   shoppingItems: Array<any>;
 
   @ViewChild(MatTable) table: MatTable<any>;
 
-  constructor(private shoppingService: ShoppingService) { }
+  constructor(public shoppingService: ShoppingService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.shoppingService.getItems().subscribe(data => {
@@ -35,4 +36,13 @@ export class ShoppingListComponent implements OnInit {
     this.table.renderRows();
   }
 
+  public popUpAddItem() {
+    const dialog = this.dialog.open(AddItemDialogComponent);
+
+    dialog.afterClosed().subscribe(result =>{
+      this.shoppingService.addItem(result)
+    });
+  }
+
 }
+
