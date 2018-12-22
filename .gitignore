@@ -4,8 +4,10 @@
 .idea
 out/
 build/
+target/
 **/e2e/
 **/node_modules/
+**/node
 *.iml
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
